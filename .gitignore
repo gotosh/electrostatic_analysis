@@ -1,0 +1,7 @@
+*.png
+*.pdf
+*.docx
+*.pptx
+__pycache__
+/build
+
