@@ -25,7 +25,9 @@ int main(){
     int N_y = ut.cast_mesh(L_y / dL_y);
 
     /* convergence criterion */
-    double conv_cr = 1e-5;
+    const double conv_cr = 1e-5;
+    /* Relaxation coefficient of SOR method */
+    const double omega = 1.7;
 
     /* Boundary condition */
     std::vector<std::vector<double>> phi(N_y, std::vector<double>(N_x, 0.0));
