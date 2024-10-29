@@ -20,7 +20,7 @@ int main(){
     double dL_x = 0.1;     // Grid distance is 0.1 mm
     double dL_y = 0.1;     // Grid distance is 0.1 mm
     /* Number of grid */
-    util ut(L_x, L_y, dL_x, dL_y);
+    util ut;
     int N_x = ut.cast_mesh(L_x / dL_x);
     int N_y = ut.cast_mesh(L_y / dL_y);
 
