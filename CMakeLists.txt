@@ -8,6 +8,7 @@ set(SOURCES
     src/main.cpp
     src/solver_sor.cpp
     src/util.cpp
+    src/boundary.cpp
 )
 add_executable(electrostatic_analyze ${SOURCES})
 target_link_libraries(electrostatic_analyze)

@@ -17,10 +17,10 @@ int main(){
     double L_x = 200.0;   // Vertical width of analytical region is 200 mm
     double L_y = 100.0;   // Horizontal width of analytical region is 200 mm
     /* Mesh grid distance */
-    double dL_x = 0.01;     // Grid distance is 0.01 mm
-    double dL_y = 0.01;     // Grid distance is 0.01 mm
+    double dL_x = 0.1;     // Grid distance is 0.1 mm
+    double dL_y = 0.1;     // Grid distance is 0.1 mm
     /* Number of grid */
-    util ut;
+    util ut(L_x, L_y, dL_x, dL_y);
     int N_x = ut.cast_mesh(L_x / dL_x);
     int N_y = ut.cast_mesh(L_y / dL_y);
 
