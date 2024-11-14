@@ -3,6 +3,7 @@
 
 boundary::boundary(int N_x, int N_y)
 {
+
 }
 
 void boundary::initialize(std::vector<std::vector<double>> &phi){
@@ -43,11 +44,6 @@ void boundary::boundary_condition(std::vector<std::vector<double>> &phi, double 
             {
                 phi.at(i).at(j) = 0.01;
             }
-            
-            
-            
-
-            
         }
         
     }
@@ -55,7 +51,7 @@ void boundary::boundary_condition(std::vector<std::vector<double>> &phi, double 
 }
 
 std::vector<std::vector<int>> boundary::flags(std::vector<std::vector<double>> &boundary){
-    std::vector<std::vector<int>> flag;
+    std::vector<std::vector<int>> flag(boundary.size(), std::vector<int>(boundary[0].size(), 0));
     
     for (int i = 0; i < boundary.size(); i++)
     {
@@ -74,7 +70,7 @@ std::vector<std::vector<int>> boundary::flags(std::vector<std::vector<double>> &
         }
         
     }
-    
+    return flag;
 }
 
 boundary::~boundary()

@@ -1,9 +1,9 @@
 #include <util.hpp>
 
-util::util()
-{
+// util::util()
+// {
     
-}
+// }
 
 /* To cast double type to int for assign mesh number */
 int util::cast_mesh(double num){

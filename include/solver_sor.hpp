@@ -12,6 +12,7 @@ private:
 
 public:
     SolverSOR();
+    void Solve(std::vector<std::vector<double>> &phi, std::vector<std::vector<int>> &flags, double dL_x, double dL_y);
     ~SolverSOR();
 };
 
