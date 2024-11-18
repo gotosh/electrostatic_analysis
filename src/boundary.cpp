@@ -40,7 +40,7 @@ void boundary::boundary_condition(std::vector<std::vector<double>> &phi, double 
                 phi.at(i).at(j) = 0.01;
             }
             // Burner body //
-            if (55.0 < ut.Index_to_coordinate(i, dL_y) && ((70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 85.0) || (105.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0)))
+            if (55.0 < ut.Index_to_coordinate(i, dL_y) && ((70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 90.0) || (110.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0)))
             {
                 phi.at(i).at(j) = 0.01;
             }

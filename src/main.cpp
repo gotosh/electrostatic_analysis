@@ -14,8 +14,8 @@ int main(){
     double L_x = 200.0;   // Vertical width of analytical region is 200 mm
     double L_y = 100.0;   // Horizontal width of analytical region is 200 mm
     /* Mesh grid distance */
-    double dL_x = 0.1;     // Grid distance is 0.1 mm
-    double dL_y = 0.1;     // Grid distance is 0.1 mm
+    double dL_x = 0.1;     // Grid distance is 1 mm
+    double dL_y = 0.1;     // Grid distance is 1 mm
     /* Number of grid */
     util ut;
     int N_x = ut.cast_mesh(L_x / dL_x);
@@ -36,7 +36,7 @@ int main(){
 
     /* Solve lapalacian equation */
     SolverSOR solve;
-    solve.Solve(phi, flag, dL_x, dL_y);
+    solve.Solve(phi, flag, dL_x, dL_y, omega, conv_cr);
 
 
 }
