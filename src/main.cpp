@@ -7,15 +7,21 @@
 #include <solver_sor.hpp>
 #include <eigen3/Eigen/Dense>
 #include <thread>
+#include <chrono>
+#include <filesystem>
 
 
 int main(){
+    /* Count time duration */
+    std::chrono::system_clock::time_point start, end;
+    start = std::chrono::system_clock::now(); // start clock
+
     /* Analytical region */
     double L_x = 200.0;   // Vertical width of analytical region is 200 mm
     double L_y = 100.0;   // Horizontal width of analytical region is 200 mm
     /* Mesh grid distance */
-    double dL_x = 0.1;     // Grid distance is 1 mm
-    double dL_y = 0.1;     // Grid distance is 1 mm
+    double dL_x = 1;     // Grid distance is 1 mm
+    double dL_y = 1;     // Grid distance is 1 mm
     /* Number of grid */
     util ut;
     int N_x = ut.cast_mesh(L_x / dL_x);
@@ -34,9 +40,23 @@ int main(){
     std::vector<std::vector<int>> flag;
     flag = boundary.flags(phi);
 
+    /* Check wether result folder does exists or not */
+    std::filesystem::path dir = "result"; // directory for creating
+    if (!std::filesystem::exists(dir))
+    {
+        std::filesystem::create_directory(dir);
+        std::cout << "result directory does not exists so be created" << std::endl;
+    } else {
+        std::cout << "result directory does already exists" << std::endl;
+    }
+    
+
     /* Solve lapalacian equation */
     SolverSOR solve;
     solve.Solve(phi, flag, dL_x, dL_y, omega, conv_cr);
 
+    end = std::chrono::system_clock::now();
+    double elapsed = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
+    ut.save_time(std::to_string(elapsed), "./result/time.txt", L_x, L_y, dL_x, dL_y);
 
 }

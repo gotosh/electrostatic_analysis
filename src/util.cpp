@@ -31,6 +31,22 @@ double util::Index_to_coordinate(int Number, double dL){
     return Number * dL;
 }
 
+void util::save_time(std::string time, std::string save_path, double analytical_x, double analytical_y, double grid_distance_x, double grid_distance_y){
+    std::ofstream file(save_path);
+    if (!file)
+    {
+        std::cout << "Save file for result time cannot be opened" << std::endl;
+        return;
+    }
+    file << time ;
+    file << " seconds has passed!" << std::endl;
+    file << "L_x: " << analytical_x << std::endl;
+    file << "L_y: " << analytical_y << std::endl;
+    file << "dL_x: " << grid_distance_x << std::endl;
+    file << "dL_y: " << grid_distance_y << std::endl;
+    
+}
+
 util::~util()
 {
 }
