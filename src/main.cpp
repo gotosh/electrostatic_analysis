@@ -20,8 +20,8 @@ int main(){
     double L_x = 200.0;   // Vertical width of analytical region is 200 mm
     double L_y = 100.0;   // Horizontal width of analytical region is 200 mm
     /* Mesh grid distance */
-    double dL_x = 1;     // Grid distance is 1 mm
-    double dL_y = 1;     // Grid distance is 1 mm
+    double dL_x = 0.2;     // Grid distance is 1 mm
+    double dL_y = 0.2;     // Grid distance is 1 mm
     /* Number of grid */
     util ut;
     int N_x = ut.cast_mesh(L_x / dL_x);
@@ -36,7 +36,7 @@ int main(){
     std::vector<std::vector<double>> phi(N_y, std::vector<double>(N_x, 0.0));
     boundary boundary(N_x, N_y);
     boundary.initialize(phi);
-    boundary.boundary_condition(phi, dL_x, dL_y);
+    boundary.boundary_condition_2(phi, dL_x, dL_y);
     std::vector<std::vector<int>> flag;
     flag = boundary.flags(phi);
 

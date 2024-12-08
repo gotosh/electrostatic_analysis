@@ -65,7 +65,7 @@ void SolverSOR::Solve(std::vector<std::vector<double>> &phi, std::vector<std::ve
             {
                 if (flags.at(i).at(j) == 1)
                 {
-                    phi.at(i).at(j) = phi_old.at(i).at(j);
+                    phi.at(i).at(j) = phi_old.at(i).at(j);  // if boundary, it will not update
                 }
                 
             }
@@ -81,9 +81,12 @@ void SolverSOR::Solve(std::vector<std::vector<double>> &phi, std::vector<std::ve
             break;
         }
         
-        write_solution(phi, "result/results.txt");
+        // 
 
     } while (max_error > tolerance);
+    
+    // Save the result //
+    write_solution(phi, "result/results.txt");
 
     // Calculate Electric field //
     std::vector<std::vector<double>> Efield_x(phi.size(), std::vector<double>(phi.at(0).size(), 0.0));
