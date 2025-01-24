@@ -86,7 +86,7 @@ void SolverSOR::Solve(std::vector<std::vector<double>> &phi, std::vector<std::ve
     } while (max_error > tolerance);
     
     // Save the result //
-    write_solution(phi, "result/results.txt");
+    write_solution(phi, "result/results_potential.txt");
 
     // Calculate Electric field //
     std::vector<std::vector<double>> Efield_x(phi.size(), std::vector<double>(phi.at(0).size(), 0.0));
