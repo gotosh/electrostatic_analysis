@@ -5,7 +5,6 @@
 #include <util.hpp>
 #include "boundary.hpp"
 #include <solver_sor.hpp>
-#include <eigen3/Eigen/Dense>
 #include <thread>
 #include <chrono>
 #include <filesystem>
