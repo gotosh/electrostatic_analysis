@@ -57,13 +57,13 @@ void boundary::boundary_condition_2(std::vector<std::vector<double>> &phi, doubl
         for (int j = 0; j < phi.at(i).size(); j++)
         {
             // At the top of electrode //
-            if ((22.0 <= ut.Index_to_coordinate(i, dL_y) && ut.Index_to_coordinate(i, dL_y) <= 30.0) && ((70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 85.0) || (115.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0)))
+            if ((26.0 <= ut.Index_to_coordinate(i, dL_y) && ut.Index_to_coordinate(i, dL_y) <= 33.0) && ((98.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 102.0)))
             {
                 phi.at(i).at(j) = 10.0;
             }
 
             // Thin film electrode
-            if ((ut.Index_to_coordinate(i, dL_y) == 35.0) && (70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0))
+            if ((33.0 <= ut.Index_to_coordinate(i, dL_y) && ut.Index_to_coordinate(i, dL_y) <= 35.0) && (70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0))
             {
                 phi.at(i).at(j) = 10.0;
             }
