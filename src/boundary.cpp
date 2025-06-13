@@ -69,10 +69,16 @@ void boundary::boundary_condition_2(std::vector<std::vector<double>> &phi, doubl
             }
             
             // Outlet of burner //
-            if (ut.Index_to_coordinate(i, dL_y) == 55.0 && (70 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0))
+            if (ut.Index_to_coordinate(i, dL_y) == 55.0 && (ut.Index_to_coordinate(j, dL_x) == 100.0))
             {
                 phi.at(i).at(j) = 0.01;
             }
+
+            // if (ut.Index_to_coordinate(i, dL_y == 55.0) && ((70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 85.0) || (115.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0)))
+            // {
+            //     phi.at(i).at(j) = 0.01;
+            // }
+            
 
             // Burner body //
             if (55.0 < ut.Index_to_coordinate(i, dL_y) && ((70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 85.0) || (115.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0)))

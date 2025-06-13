@@ -52,25 +52,25 @@ void SolverSOR::Solve(std::vector<std::vector<double>> &phi, std::vector<std::ve
         {
             for (int j = 1; j < phi.at(i).size() - 1; j++)
             {
-                double phi_new = ((phi.at(i+1).at(j) + phi.at(i-1).at(j)) * (dL_y*dL_y) + (phi.at(i).at(j+1) + phi.at(i).at(j-1)) * (dL_x*dL_x)) / (2*(dL_x*dL_x + dL_y*dL_y));
-                phi.at(i).at(j) = phi_old.at(i).at(j) + omega * (phi_new - phi_old.at(i).at(j));
+                // Apply boundary condition //
+                if (flags[i][j] == 1)
+                {
+                    phi[i][j] = phi_old[i][j];  // if boundary, it will not update
+                }
+                
+                else if (flags[i][j] == 0)
+                {
+                    double phi_new = 
+                                     ((phi[i+1][j] + phi[i-1][j]) * (dL_y*dL_y) 
+                                     + (phi[i][j+1] + phi[i][j-1]) * (dL_x*dL_x)) / (2*(dL_x*dL_x + dL_y*dL_y));
+                    phi[i][j] = phi_old[i][j] + omega * (phi_new - phi_old[i][j]);                    
+                }
+                
+
             }           
             
         }
 
-        // Apply boundary condition //
-        for (int i = 0; i < phi.size() - 1; i++)
-        {
-            for (int j = 0; j < phi.at(i).size() - 1; j++)
-            {
-                if (flags.at(i).at(j) == 1)
-                {
-                    phi.at(i).at(j) = phi_old.at(i).at(j);  // if boundary, it will not update
-                }
-                
-            }
-            
-        }
         // Calculate error //
         max_error = calculate_error(phi, phi_old);
         iterations++;
@@ -94,10 +94,31 @@ void SolverSOR::Solve(std::vector<std::vector<double>> &phi, std::vector<std::ve
 
     for (int i = 0; i < phi.size() - 1; i++)
     {
-        for (int j = 0; j < phi.at(i).size() - 1; j++)
+        for (int j = 0; j < phi[0].size() - 1; j++)
         {
-            Efield_x.at(i).at(j) = - (phi.at(i).at(j + 1) - phi.at(i).at(j)) / dL_x;
-            Efield_y.at(i).at(j) =  (phi.at(i + 1).at(j) - phi.at(i).at(j)) / dL_y;
+            if (j > 0 && j < phi[0].size() - 1)
+            {
+                Efield_x[i][j] = - (phi[i][j+1] - phi[i][j-1]) / (2*dL_x);
+            } else if (j == 0 && j + 1 < phi[0].size())
+            {
+                Efield_x[i][j] = - (phi[i][j+1] - phi[i][j]) / dL_x;
+            } else if (j == phi[0].size() - 1 && j - 1 >= 0)
+            {
+                Efield_x[i][j] = - (phi[i][j] - phi[i][j-1]) / dL_x;
+            }
+            
+            
+            if (i > 0 && i < phi.size() - 1)
+            {
+                Efield_y[i][j] = - (phi[i+1][j] - phi[i-1][j]) / (2*dL_y);
+            } else if (i == 0 && i + 1 < phi.size())
+            {
+                Efield_y[i][j] = - (phi[i+1][j] - phi[i][j]) / dL_y;
+            } else if (i == phi.size() - 1 && i - 1 >= 0)
+            {
+                Efield_y[i][j] = - (phi[i+1][j] - phi[i][j]) / dL_y;
+            }
+            
         }
         
     }
