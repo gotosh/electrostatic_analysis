@@ -110,13 +110,13 @@ void SolverSOR::Solve(std::vector<std::vector<double>> &phi, std::vector<std::ve
             
             if (i > 0 && i < phi.size() - 1)
             {
-                Efield_y[i][j] = - (phi[i+1][j] - phi[i-1][j]) / (2*dL_y);
+                Efield_y[i][j] = (phi[i+1][j] - phi[i-1][j]) / (2*dL_y);
             } else if (i == 0 && i + 1 < phi.size())
             {
-                Efield_y[i][j] = - (phi[i+1][j] - phi[i][j]) / dL_y;
+                Efield_y[i][j] = (phi[i+1][j] - phi[i][j]) / dL_y;
             } else if (i == phi.size() - 1 && i - 1 >= 0)
             {
-                Efield_y[i][j] = - (phi[i+1][j] - phi[i][j]) / dL_y;
+                Efield_y[i][j] = (phi[i][j] - phi[i-1][j]) / dL_y;
             }
             
         }
