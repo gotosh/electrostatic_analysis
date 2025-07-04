@@ -57,18 +57,17 @@ void boundary::boundary_condition_2(std::vector<std::vector<double>> &phi, doubl
         for (int j = 0; j < phi.at(i).size(); j++)
         {
             // At the top of electrode //
-            if ((26.0 <= ut.Index_to_coordinate(i, dL_y) && ut.Index_to_coordinate(i, dL_y) <= 33.0) && ((98.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 102.0)))
+            if ((22.0 <= ut.Index_to_coordinate(i, dL_y) && ut.Index_to_coordinate(i, dL_y) <= 30.0) && ((70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 85.0) || (115.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0)))
             {
                 phi.at(i).at(j) = 10.0;
             }
 
-            // Thin film electrode
-            if ((33.0 <= ut.Index_to_coordinate(i, dL_y) && ut.Index_to_coordinate(i, dL_y) <= 35.0) && (70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0))
-            {
-                phi.at(i).at(j) = 10.0;
-            }
             
             // Outlet of burner //
+            if (ut.Index_to_coordinate(i, dL_y) == 55.0 && ((70.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 85.0) || (115.0 <= ut.Index_to_coordinate(j, dL_x) && ut.Index_to_coordinate(j, dL_x) <= 130.0)))
+            {
+                phi.at(i).at(j) = 0.01;
+            }
             // if (ut.Index_to_coordinate(i, dL_y) == 55.0 && (ut.Index_to_coordinate(j, dL_x) == 100.0))
             // {
             //     phi.at(i).at(j) = 0.01;
